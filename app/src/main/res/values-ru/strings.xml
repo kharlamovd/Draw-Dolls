@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Рисуем кукол</string>
+    <string name="app_descr">Как рисовать кукол поэтапно</string>
+    <string name="loading">Загрузка...</string>
+    <string name="in_prog">В процессе</string>
+    <string name="new_doll">Новая</string>
+    <string name="done">Готово</string>
+    <string name="my_coll">Моя коллекция</string>
+    <string name="winx">Кукла Винкс</string>
+    <string name="simple_doll">Простая кукла</string>
+    <string name="lol_boots">LOL в сапожках</string>
+    <string name="lol_pink">Розовая LOL</string>
+    <string name="lol_band">LOL с обручем</string>
+    <string name="girl_doll">Кукла девочка</string>
+    <string name="ballerina">Кукла балерина</string>
+    <string name="old_dress_doll">Кукла в старом платье</string>
+    <string name="next">Далее</string>
+</resources>

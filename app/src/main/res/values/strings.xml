@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Draw Dolls</string>
+    <string name="app_descr">Draw Dolls Step by Step</string>
+    <string name="loading">Loading...</string>
+    <string name="in_prog">In progress</string>
+    <string name="new_doll">New</string>
+    <string name="done">Done!</string>
+    <string name="my_coll">My Collection</string>
+    <string name="winx">Winx Doll</string>
+    <string name="simple_doll">Simple Doll</string>
+    <string name="lol_boots">LOL in boots</string>
+    <string name="lol_pink">Pink LOL</string>
+    <string name="lol_band">LOL with Hair Band</string>
+    <string name="girl_doll">Girl Doll</string>
+    <string name="ballerina">Ballerina Doll</string>
+    <string name="old_dress_doll">Doll in an Old Dress</string>
+    <string name="next">Next</string>
+</resources>
