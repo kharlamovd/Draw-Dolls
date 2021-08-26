@@ -1,10 +1,10 @@
 package com.brands.drawdolls;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class DollListActivity extends AppCompatActivity {
+import com.brands.drawdolls.nav_btns_listeners.BaseActivity;
+
+public class DollListActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

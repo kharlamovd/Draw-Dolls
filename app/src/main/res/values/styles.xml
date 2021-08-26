@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="button_style" parent="@android:style/Widget.Button">
-        <item name="android:background">@drawable/button</item>
-        <item name="android:textColor">@color/white</item>
+    <style name="button_next_style" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_next</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:layout_width">@dimen/button_width</item>
-        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textStyle">bold</item>
         <item name="backgroundTint">@null</item>
     </style>
 
-    <style name="image_button_style">
-        <item name="android:background">@drawable/tap_circle</item>
+    <style name="button_done_style" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_done</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/circle_font_size</item>
-        <!--<item name="android:layout_width">@dimen/button_width</item>-->
-        <item name="android:fontFamily">@font/roboto_bold</item>
-        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:layout_width">@dimen/button_width</item>
+        <item name="android:textStyle">bold</item>
         <item name="backgroundTint">@null</item>
     </style>
 
     <style name="header_style">
         <item name="android:textAlignment">center</item>
-        <item name="android:textSize">@dimen/header_font_size</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">@font/roboto_bold</item>
-        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/smaller_header_font_size</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/epilogue_variablefont_wght</item>
     </style>
 
     <style name="textview_style">
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">@dimen/textview_text_size</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/loading_text_color</item>
     </style>
 
     <style name="nav_buttons_layout_style">

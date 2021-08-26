@@ -8,14 +8,50 @@
 
     <TextView
         android:text="@string/my_coll"
+        style="@style/header_style"
+        android:drawableLeft="@drawable/emoji"
+        android:layout_marginTop="40dp"
+        android:paddingLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <GridLayout
+        android:id="@+id/listGrid"
         android:columnCount="2"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.cardview.widget.CardView
+            android:layout_margin="10dp"
+            cardCornerRadius="20dp"
+            cardElevation="10dp"
+            cardPreventCornerOverlap="true"
+            cardUseCompatPadding="true">
+
+            <ImageView
+                android:layout_width="@dimen/doll_card_width"
+                android:layout_height="@dimen/doll_card_height"
+                android:scaleType="centerCrop"
+                android:src="@drawable/doll1_12" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="10dp"
+            cardCornerRadius="20dp"
+            cardElevation="10dp"
+            cardPreventCornerOverlap="true"
+            cardUseCompatPadding="true">
+
+            <ImageView
+                android:layout_width="@dimen/doll_card_width"
+                android:layout_height="@dimen/doll_card_height"
+                android:scaleType="fitXY"
+                android:src="@drawable/doll1_12" />
+
+        </androidx.cardview.widget.CardView>
 
     </GridLayout>
 

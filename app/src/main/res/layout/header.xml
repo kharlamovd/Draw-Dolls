@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/nav_buttons_layout_style"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".BackButtonActivity"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/headerText"
+        android:textAlignment="textStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/header_style"
+        android:textSize="25sp" />
+
+
+</LinearLayout>

@@ -1,25 +1,18 @@
 package com.brands.drawdolls;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.brands.drawdolls.nav_btns_listeners.BackOnClick;
+import com.brands.drawdolls.nav_btns_listeners.BaseActivity;
 
-public class BackButtonActivity extends AppCompatActivity {
+public class BackButtonActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN |
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
-                View.SYSTEM_UI_FLAG_IMMERSIVE;
-        decorView.setSystemUiVisibility(uiOptions);
+        initBackButton();
     }
 
     protected void initBackButton() {

@@ -1,8 +1,8 @@
 package com.brands.drawdolls;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class DollActivity extends BackButtonActivity {
 
@@ -10,6 +10,15 @@ public class DollActivity extends BackButtonActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doll);
+
+        initBackButton();
+
+        Intent intent = getIntent();
+        String headerText = intent.getStringExtra("header");
+
+        TextView header = findViewById(R.id.headerText);
+        header.setText(headerText);
+
     }
 
 }

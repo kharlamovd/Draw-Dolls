@@ -13,4 +13,44 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/nav_button_margin_top" />
 
+    <LinearLayout
+        android:id="@+id/tabSwitchLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/stepImageView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:src="@drawable/doll1_1" />
+
+    <View
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_gravity="center"
+        android:text="@string/next"
+        style="@style/button_next_style"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="@dimen/button_layout_height"
+        android:layout_marginBottom="@dimen/button_layout_margin_bottom"
+        android:visibility="visible"/>
+
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_gravity="center"
+        android:text="@string/done"
+        style="@style/button_done_style"
+        android:textStyle="bold"
+        android:layout_width="@dimen/button_layout_width"
+        android:layout_height="@dimen/button_layout_height"
+        android:layout_marginBottom="@dimen/button_layout_margin_bottom"
+        android:visibility="gone"/>
+
 </LinearLayout>
