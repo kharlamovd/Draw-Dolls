@@ -9,7 +9,7 @@ import android.widget.ViewSwitcher;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int TIME_OUT_POPUP = 3500;
+    private static final int TIME_OUT_POPUP = 2300;
     private final Handler handler = new Handler();
 
     @Override
@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setTimeOut();
+
+        DollsFactory.init(this);
     }
 
     @Override
