@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".DollListActivity">
 
@@ -15,20 +16,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <GridLayout
-        android:id="@+id/listGrid"
-        android:columnCount="2"
-        android:orientation="horizontal"
-        android:gravity="center"
+    <com.nex3z.flowlayout.FlowLayout
+        android:layout_marginTop="@dimen/doll_list_margin_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:flChildSpacing="auto"
+        app:flRowSpacing="8dp"
+        app:flChildSpacingForLastRow="align" >
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="10dp"
             cardCornerRadius="20dp"
             cardElevation="10dp"
             cardPreventCornerOverlap="true"
-            cardUseCompatPadding="true">
+            cardUseCompatPadding="true"
+            android:layout_margin="@dimen/doll_list_item_margin"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
 
             <ImageView
                 android:layout_width="@dimen/doll_card_width"
@@ -39,7 +42,9 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/doll_list_item_margin"
             cardCornerRadius="20dp"
             cardElevation="10dp"
             cardPreventCornerOverlap="true"
@@ -53,6 +58,40 @@
 
         </androidx.cardview.widget.CardView>
 
-    </GridLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/doll_list_item_margin"
+            cardCornerRadius="20dp"
+            cardElevation="10dp"
+            cardPreventCornerOverlap="true"
+            cardUseCompatPadding="true">
+
+            <ImageView
+                android:layout_width="@dimen/doll_card_width"
+                android:layout_height="@dimen/doll_card_height"
+                android:scaleType="fitXY"
+                android:src="@drawable/doll1_12" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/doll_list_item_margin"
+            cardCornerRadius="20dp"
+            cardElevation="10dp"
+            cardPreventCornerOverlap="true"
+            cardUseCompatPadding="true">
+
+            <ImageView
+                android:layout_width="@dimen/doll_card_width"
+                android:layout_height="@dimen/doll_card_height"
+                android:scaleType="fitXY"
+                android:src="@drawable/doll1_12" />
+
+        </androidx.cardview.widget.CardView>
+
+    </com.nex3z.flowlayout.FlowLayout>
 
 </LinearLayout>

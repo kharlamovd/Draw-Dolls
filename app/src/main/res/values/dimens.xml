@@ -29,4 +29,7 @@
     <dimen name="prog_bar_padding">20dp</dimen>
     <dimen name="prog_bar_margin_top">40dp</dimen>
 
+    <dimen name="doll_list_margin_top">30dp</dimen>
+    <dimen name="doll_list_item_margin">20dp</dimen>
+
 </resources>
