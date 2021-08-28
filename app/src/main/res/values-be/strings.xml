@@ -15,4 +15,5 @@
     <string name="ballerina">Кукла балерина</string>
     <string name="old_dress_doll">Кукла в старом платье</string>
     <string name="next">Далее</string>
+    <string name="save_prog">Вы бы хотели сохранить прогресс?</string>
 </resources>

@@ -21,7 +21,7 @@ public class Doll {
         this.stepsNum = stepsNum;
         this.currentStep = 1;
 
-        status = DollStatus.NONE;
+        status = DollStatus.NEW;
     }
 
     public DollStatus getStatus() {
@@ -46,5 +46,13 @@ public class Doll {
 
     public void setStepsNum(int stepsNum) {
         this.stepsNum = stepsNum;
+    }
+
+    public int getDollId() {
+        return dollId;
+    }
+
+    public void setDollId(int dollId) {
+        this.dollId = dollId;
     }
 }

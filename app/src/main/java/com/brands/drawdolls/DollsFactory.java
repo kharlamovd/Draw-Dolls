@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import com.brands.drawdolls.extras.TinyDB;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DollsFactory {
 
@@ -22,18 +23,8 @@ public class DollsFactory {
 
         dollList = tinydb.getDollsList("dolls");
 
-        if (dollList == null) {
-
-            dollList.add(new Doll(1, 12));
-            dollList.add(new Doll(2, 10));
-            dollList.add(new Doll(3, 9));
-            dollList.add(new Doll(4, 8));
-            dollList.add(new Doll(5, 4));
-            dollList.add(new Doll(6, 8));
-            dollList.add(new Doll(7, 7));
-            dollList.add(new Doll(8, 7));
-
-        }
+        if (dollList == null || dollList.size() == 0)
+            createNewDollsList();
 
     }
 
@@ -45,19 +36,20 @@ public class DollsFactory {
 
     }
 
-    public void saveDollWithStatus(int dollNum, int step, DollStatus status) {
+    public void saveDollWithStatus(int dollId, int step, DollStatus status) {
 
-        Doll doll = dollList.get(dollNum);
+        Doll doll = dollList.get(dollId);
         doll.setStatus(status);
         doll.setCurrentStep(step);
 
     }
 
-    public static Drawable getDollDrawable(int dollNum, int step, Context context) {
+    public static Drawable getDollDrawable(int dollId, int step, Context context) {
 
         Resources resources = context.getResources();
+        String name = DOLL_NAME + (dollId + 1) + "_" + step;
         final int resourceId = resources.getIdentifier(
-                DOLL_NAME + dollNum + "_" + step,
+                name,
                 "drawable",
                 context.getPackageName()
         );
@@ -66,8 +58,28 @@ public class DollsFactory {
 
     }
 
+    public static Drawable getDollTitleDrawable(int dollId, Context context) {
+
+        int step = dollList.get(dollId).getStepsNum();
+        return getDollDrawable(dollId, step, context);
+
+    }
+
     public static Integer getStepsNumByDoll(int dollNum) {
         return dollList.get(dollNum).getStepsNum();
+    }
+
+    private static void createNewDollsList() {
+
+        dollList.add(new Doll(0, 12));
+        dollList.add(new Doll(1, 10));
+        dollList.add(new Doll(2, 9));
+        dollList.add(new Doll(3, 8));
+        dollList.add(new Doll(4, 4));
+        dollList.add(new Doll(5, 8));
+        dollList.add(new Doll(6, 7));
+        dollList.add(new Doll(7, 7));
+
     }
 
 }

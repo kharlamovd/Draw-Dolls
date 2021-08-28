@@ -9,7 +9,7 @@ import android.widget.ViewSwitcher;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int TIME_OUT_POPUP = 2300;
+    private static final int TIME_OUT_POPUP = 2000;
     private final Handler handler = new Handler();
 
     @Override

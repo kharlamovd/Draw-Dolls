@@ -20,8 +20,8 @@
 
     <dimen name="textview_text_size">16sp</dimen>
 
-    <dimen name="doll_card_height">200dp</dimen>
-    <dimen name="doll_card_width">165dp</dimen>
+    <dimen name="doll_card_width">140dp</dimen>
+    <dimen name="doll_card_height">170dp</dimen>
 
     <dimen name="nav_button_margin_top">50dp</dimen>
     <dimen name="nav_button_margin_start">30dp</dimen>
@@ -30,6 +30,10 @@
     <dimen name="prog_bar_margin_top">40dp</dimen>
 
     <dimen name="doll_list_margin_top">30dp</dimen>
-    <dimen name="doll_list_item_margin">20dp</dimen>
+    <dimen name="doll_list_item_margin">32dp</dimen>
+    <dimen name="doll_list_item_state_margin">8dp</dimen>
+
+    <dimen name="card_corner_radius">20dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
 
 </resources>

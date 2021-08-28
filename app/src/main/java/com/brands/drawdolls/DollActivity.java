@@ -2,6 +2,7 @@ package com.brands.drawdolls;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DollActivity extends BackButtonActivity {
@@ -18,6 +19,14 @@ public class DollActivity extends BackButtonActivity {
 
         TextView header = findViewById(R.id.headerText);
         header.setText(headerText);
+
+    }
+
+    public void setOnNextButtonClick(Button button) {
+
+    }
+
+    public void setOnDoneButtonClick(Button button) {
 
     }
 
