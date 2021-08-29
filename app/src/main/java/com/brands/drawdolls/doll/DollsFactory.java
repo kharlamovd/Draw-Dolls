@@ -1,4 +1,4 @@
-package com.brands.drawdolls;
+package com.brands.drawdolls.doll;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import com.brands.drawdolls.extras.TinyDB;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DollsFactory {
 

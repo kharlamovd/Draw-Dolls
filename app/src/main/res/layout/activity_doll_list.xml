@@ -28,7 +28,7 @@
             app:flChildSpacingForLastRow="align"
             app:flChildSpacing="auto">
 
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 android:layout_marginStart="@dimen/doll_list_item_margin"
                 android:layout_marginEnd="@dimen/doll_list_item_margin"
@@ -37,35 +37,30 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content">
 
-                <ImageView
-                    android:layout_width="@dimen/doll_card_width"
-                    android:layout_height="@dimen/doll_card_height"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/doll1_12" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"/>
+                    <ImageView
+                        android:id="@+id/dollImg"
+                        android:layout_width="@dimen/doll_card_width"
+                        android:layout_height="@dimen/doll_card_height"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/doll1_12" />
 
                     <ImageView
-                        android:src="@drawable/state_new"
-                        android:layout_margin="@dimen/doll_list_item_state_margin"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dollImg"
+                        android:layout_marginStart="@dimen/status_margin_start"
+                        android:layout_marginTop="@dimen/status_margin_top"
+                        android:src="@drawable/state_new" />
 
-                </LinearLayout>
-
-
+                </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 
-            <!--<androidx.cardview.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_marginStart="@dimen/doll_list_item_margin"

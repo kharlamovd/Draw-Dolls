@@ -1,4 +1,4 @@
-package com.brands.drawdolls;
+package com.brands.drawdolls.doll;
 
 public enum DollStatus {
 

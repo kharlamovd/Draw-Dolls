@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.ViewSwitcher;
+
+import com.brands.drawdolls.doll.DollsFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int TIME_OUT_POPUP = 2000;
+    private static final int TIME_OUT_POPUP = 1500;
     private final Handler handler = new Handler();
 
     @Override
