@@ -22,6 +22,7 @@ public class DollListActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doll_list);
 
@@ -42,10 +43,10 @@ public class DollListActivity extends BaseActivity {
 
         for (Doll doll: dollList) {
 
-            int dollId = doll.getDollId();
-
-            Drawable titleDrawable = DollsFactory.getDollTitleDrawable(dollId, this);
+            Drawable titleDrawable = doll.getDollTitleDrawable(this);
             ImageView imageView = dollViewFactory.createImageView(titleDrawable);
+            dollViewFactory.setTitleImageOnClick(imageView, doll);
+
             ImageView statusImageView = dollViewFactory.createStatusImageView(
                     doll.getStatus(), imageView.getId()
             );

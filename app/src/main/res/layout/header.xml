@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/header_style"
-        android:textSize="25sp" />
+        android:textSize="24sp" />
 
 
 </LinearLayout>

@@ -13,18 +13,35 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/nav_button_margin_top" />
 
-    <com.nex3z.flowlayout.FlowLayout
-        android:id="@+id/dollsLayout"
+    <HorizontalScrollView
+        android:layout_marginTop="@dimen/nav_button_margin_top"
+        android:layout_marginStart="@dimen/step_layout_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:flChildSpacingForLastRow="align"
-        app:flChildSpacing="auto">
+        android:layout_height="wrap_content">
 
-    </com.nex3z.flowlayout.FlowLayout>
+        <LinearLayout
+            android:layout_marginEnd="@dimen/step_layout_margin"
+            android:id="@+id/stepsLayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--<Button
+                android:layout_width="@dimen/step_circle_size"
+                android:layout_height="@dimen/step_circle_size"
+                android:background="@drawable/step_circle"
+                android:textStyle="bold"
+                android:textSize="@dimen/step_button_text_size"
+                android:text="1" />-->
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <ImageView
         android:id="@+id/stepImageView"
         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_height="500dp"
         android:src="@drawable/doll1_1" />
 

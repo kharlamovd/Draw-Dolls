@@ -1,9 +1,11 @@
 package com.brands.drawdolls.doll;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.view.Display;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,13 +13,12 @@ import android.widget.RelativeLayout;
 
 import androidx.cardview.widget.CardView;
 
+import com.brands.drawdolls.DollActivity;
 import com.brands.drawdolls.R;
 
 public class DollViewFactory {
 
     private Context context;
-
-    private static int IMAGE_TITLE_ID = 1;
 
     public DollViewFactory(Context context) {
         this.context = context;
@@ -75,9 +76,22 @@ public class DollViewFactory {
         imageView.setLayoutParams(layoutParams);
         imageView.setImageDrawable(titleDrawable);
 
-        imageView.setId(IMAGE_TITLE_ID++);
+        imageView.setId(View.generateViewId());
 
         return imageView;
+
+    }
+
+    public void setTitleImageOnClick(ImageView titleImage, Doll doll) {
+
+        titleImage.setOnClickListener(view -> {
+
+            Intent intent = new Intent(context, DollActivity.class);
+            intent.putExtra("doll", doll);
+
+            context.startActivity(intent);
+
+        });
 
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 
+import com.brands.drawdolls.R;
 import com.brands.drawdolls.extras.TinyDB;
 
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ public class DollsFactory {
     public final static Map<Integer, Integer> STEPS_NUM_BY_DOLLS = new HashMap<>();*/
 
     public static ArrayList<Doll> dollList;
-    public static final String DOLL_NAME = "doll";
 
     public static void init(Context context) {
 
@@ -43,41 +43,16 @@ public class DollsFactory {
 
     }
 
-    public static Drawable getDollDrawable(int dollId, int step, Context context) {
-
-        Resources resources = context.getResources();
-        String name = DOLL_NAME + (dollId + 1) + "_" + step;
-        final int resourceId = resources.getIdentifier(
-                name,
-                "drawable",
-                context.getPackageName()
-        );
-
-        return resources.getDrawable(resourceId);
-
-    }
-
-    public static Drawable getDollTitleDrawable(int dollId, Context context) {
-
-        int step = dollList.get(dollId).getStepsNum();
-        return getDollDrawable(dollId, step, context);
-
-    }
-
-    public static Integer getStepsNumByDoll(int dollNum) {
-        return dollList.get(dollNum).getStepsNum();
-    }
-
     private static void createNewDollsList() {
 
-        dollList.add(new Doll(0, 12));
-        dollList.add(new Doll(1, 10));
-        dollList.add(new Doll(2, 9));
-        dollList.add(new Doll(3, 8));
-        dollList.add(new Doll(4, 4));
-        dollList.add(new Doll(5, 8));
-        dollList.add(new Doll(6, 7));
-        dollList.add(new Doll(7, 7));
+        dollList.add(new Doll(0, R.string.lol_pink, 12));
+        dollList.add(new Doll(1, R.string.lol_band, 10));
+        dollList.add(new Doll(2, R.string.lol_boots, 9));
+        dollList.add(new Doll(3, R.string.winx, 8));
+        dollList.add(new Doll(4, R.string.simple_doll, 4));
+        dollList.add(new Doll(5, R.string.girl_doll, 8));
+        dollList.add(new Doll(6, R.string.old_dress_doll, 7));
+        dollList.add(new Doll(7, R.string.ballerina, 7));
 
     }
 

@@ -8,12 +8,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <include
+        android:layout_marginTop="5dp"
         layout="@layout/nav_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <include
         layout="@layout/header"
+        android:layout_marginStart="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
