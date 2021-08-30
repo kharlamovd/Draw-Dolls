@@ -16,4 +16,7 @@
     <string name="old_dress_doll">Doll in an Old Dress</string>
     <string name="next">Next</string>
     <string name="save_prog">Would you like to save progress?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="no">No</string>
 </resources>

@@ -14,8 +14,11 @@
         android:layout_marginTop="@dimen/nav_button_margin_top" />
 
     <HorizontalScrollView
+        android:id="@+id/stepScroll"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/nav_button_margin_top"
         android:layout_marginStart="@dimen/step_layout_margin"
+        android:layout_marginEnd="@dimen/step_layout_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -42,8 +45,7 @@
         android:id="@+id/stepImageView"
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_height="500dp"
-        android:src="@drawable/doll1_1" />
+        android:layout_height="500dp" />
 
     <View
         android:layout_weight="1"

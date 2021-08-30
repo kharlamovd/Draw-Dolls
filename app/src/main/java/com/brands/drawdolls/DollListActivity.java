@@ -2,7 +2,9 @@ package com.brands.drawdolls;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.cardview.widget.CardView;
@@ -32,6 +34,13 @@ public class DollListActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        updateDollsStatus();
+    }
+
     private void initDollsList() {
 
         FlowLayout dollsLayout = findViewById(R.id.dollsLayout);
@@ -45,7 +54,7 @@ public class DollListActivity extends BaseActivity {
 
             Drawable titleDrawable = doll.getDollTitleDrawable(this);
             ImageView imageView = dollViewFactory.createImageView(titleDrawable);
-            dollViewFactory.setTitleImageOnClick(imageView, doll);
+            dollViewFactory.setTitleImageOnClick(imageView, doll.getDollId());
 
             ImageView statusImageView = dollViewFactory.createStatusImageView(
                     doll.getStatus(), imageView.getId()
@@ -62,6 +71,22 @@ public class DollListActivity extends BaseActivity {
 
             dollsLayout.addView(cardView);
 
+        }
+
+    }
+
+    private void updateDollsStatus() {
+
+        LinearLayout stepsLayout = findViewById(R.id.stepsLayout);
+
+        int childCount = stepsLayout.getChildCount();
+
+        for (int i = 0; i < childCount; i++) {
+            View v = stepsLayout.getChildAt(i);
+
+            if (v instanceof CardView) {
+
+            }
         }
 
     }

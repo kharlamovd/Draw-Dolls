@@ -16,4 +16,7 @@
     <string name="old_dress_doll">Кукла в старом платье</string>
     <string name="next">Далее</string>
     <string name="save_prog">Вы бы хотели сохранить прогресс?</string>
+    <string name="cancel">Отмена</string>
+    <string name="yes" translatable="false">Да</string>
+    <string name="no">Нет</string>
 </resources>

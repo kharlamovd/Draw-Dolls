@@ -1,5 +1,7 @@
 package com.brands.drawdolls.doll;
 
+import static com.brands.drawdolls.doll.DollsFactory.dollList;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -82,12 +84,12 @@ public class DollViewFactory {
 
     }
 
-    public void setTitleImageOnClick(ImageView titleImage, Doll doll) {
+    public void setTitleImageOnClick(ImageView titleImage, int idx) {
 
         titleImage.setOnClickListener(view -> {
 
             Intent intent = new Intent(context, DollActivity.class);
-            intent.putExtra("doll", doll);
+            intent.putExtra("doll", dollList.get(idx));
 
             context.startActivity(intent);
 
