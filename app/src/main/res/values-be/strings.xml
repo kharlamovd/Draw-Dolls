@@ -19,4 +19,6 @@
     <string name="cancel">Отмена</string>
     <string name="yes" translatable="false">Да</string>
     <string name="no">Нет</string>
+    <string name="nice_job">Отличная работа!</string>
+    <string name="thanks">Спасибо!</string>
 </resources>

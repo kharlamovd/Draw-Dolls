@@ -32,8 +32,8 @@ public class DollActivity extends BackButtonActivity {
         Intent intent = getIntent();
         this.doll = (Doll) intent.getSerializableExtra("doll");
 
-        ImageButton settingsButton = findViewById(R.id.backButton);
-        settingsButton.setOnClickListener(view -> onBackPressed());
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(view -> onBackPressed());
 
         TextView header = findViewById(R.id.headerText);
         header.setText(doll.getDollTitleStringId());
@@ -200,14 +200,34 @@ public class DollActivity extends BackButtonActivity {
 
         button.setOnClickListener(view -> {
 
+            doll.setStatus(DollStatus.DONE);
+            DollsFactory.dollList.set(doll.getDollId(), doll);
             DollsFactory.saveDolls(this);
-            this.finish();
+
+            showCheeringDialog();
 
         });
 
     }
 
-    public void showDialog() {
+    private void showCheeringDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(R.string.nice_job)
+                .setPositiveButton(R.string.thanks, (dialog, id) -> {
+
+                    dialog.cancel();
+                    this.finish();
+
+                });
+
+        Dialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    private void showOnCloseDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -244,10 +264,16 @@ public class DollActivity extends BackButtonActivity {
     @Override
     public void onBackPressed() {
 
-        if (doll.isSaveProgress())
+        if (doll.isSaveProgress()) {
+            DollsFactory.dollList.set(doll.getDollId(), doll);
             DollsFactory.saveDolls(this);
-        else
-            showDialog();
+            this.finish();
+        } else {
+            int currentStep = doll.getCurrentStep();
+
+            if (currentStep > 1)
+                showOnCloseDialog();
+        }
 
     }
 }

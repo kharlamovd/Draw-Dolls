@@ -26,7 +26,7 @@ public class DollViewFactory {
         this.context = context;
     }
 
-    public CardView createCardView(Side side) {
+    public CardView createCardView() {
 
         CardView cardView = new CardView(context);
 
@@ -34,12 +34,6 @@ public class DollViewFactory {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        int cardMargin = getCardMargin();
-        //int cardMarginBottom = (int) context.getResources().getDimension(R.dimen.doll_list_item_margin);
-        if (side == Side.LEFT)
-            layoutParams.setMargins(cardMargin, 0, 0, 0);
-        else
-            layoutParams.setMargins(0, 0, cardMargin, 0);
 
         cardView.setLayoutParams(layoutParams);
         cardView.setCardElevation(
@@ -52,6 +46,20 @@ public class DollViewFactory {
         cardView.setUseCompatPadding(true);
 
         return cardView;
+
+    }
+
+    public void setDollViewMargins(
+            LinearLayout.LayoutParams layoutParams,
+            Side side
+    ) {
+
+        int cardMargin = getCardMargin();
+
+        if (side == Side.LEFT)
+            layoutParams.setMargins(cardMargin, 0, 0, 0);
+        else
+            layoutParams.setMargins(0, 0, cardMargin, 0);
 
     }
 

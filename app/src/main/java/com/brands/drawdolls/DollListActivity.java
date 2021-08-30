@@ -30,25 +30,33 @@ public class DollListActivity extends BaseActivity {
 
         FACTOR = (int) getResources().getDisplayMetrics().density;
 
-        initDollsList();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        updateDollsStatus();
+        clearDollListLayout();
+        initDollsList();
+    }
+
+    private void clearDollListLayout() {
+
+        FlowLayout dollsLayout = findViewById(R.id.dollsLayout);
+        dollsLayout.removeAllViewsInLayout();
+
     }
 
     private void initDollsList() {
 
-        FlowLayout dollsLayout = findViewById(R.id.dollsLayout);
         ArrayList<Doll> dollList = DollsFactory.dollList;
 
         DollViewFactory dollViewFactory = new DollViewFactory(this);
 
-        Side side = Side.LEFT;
+        ArrayList<CardView> dollsInProgList = new ArrayList<>();
+        ArrayList<CardView> dollsDoneList = new ArrayList<>();
+        ArrayList<CardView> dollsNewList = new ArrayList<>();
+        ArrayList<CardView> dollsNoneList = new ArrayList<>();
 
         for (Doll doll: dollList) {
 
@@ -60,8 +68,7 @@ public class DollListActivity extends BaseActivity {
                     doll.getStatus(), imageView.getId()
             );
 
-            CardView cardView = dollViewFactory.createCardView(side);
-            side = switchSide(side);
+            CardView cardView = dollViewFactory.createCardView();
 
             RelativeLayout cardLayout = dollViewFactory.createCardLayout();
             cardLayout.addView(imageView);
@@ -69,25 +76,45 @@ public class DollListActivity extends BaseActivity {
 
             cardView.addView(cardLayout);
 
-            dollsLayout.addView(cardView);
+            switch (doll.getStatus()) {
+                case NEW:
+                    dollsNewList.add(cardView);
+                    break;
+                case DONE:
+                    dollsDoneList.add(cardView);
+                    break;
+                case IN_PROGRESS:
+                    dollsInProgList.add(cardView);
+                    break;
+                default:
+                    dollsNoneList.add(cardView);
+            }
 
         }
+
+        addListToLayout(dollsInProgList);
+        addListToLayout(dollsDoneList);
+        addListToLayout(dollsNewList);
+        addListToLayout(dollsNoneList);
 
     }
 
-    private void updateDollsStatus() {
+    private void addListToLayout(ArrayList<CardView> list) {
 
-        LinearLayout stepsLayout = findViewById(R.id.stepsLayout);
+        DollViewFactory dollViewFactory = new DollViewFactory(this);
+        FlowLayout dollsLayout = findViewById(R.id.dollsLayout);
+        Side side = Side.LEFT;
 
-        int childCount = stepsLayout.getChildCount();
-
-        for (int i = 0; i < childCount; i++) {
-            View v = stepsLayout.getChildAt(i);
-
-            if (v instanceof CardView) {
-
-            }
+        for (CardView dollView : list) {
+            dollViewFactory.setDollViewMargins(
+                    (LinearLayout.LayoutParams) dollView.getLayoutParams(),
+                    side
+            );
+            dollsLayout.addView(dollView);
+            side = switchSide(side);
         }
+
+        list.clear();
 
     }
 

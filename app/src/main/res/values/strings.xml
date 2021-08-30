@@ -19,4 +19,6 @@
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="no">No</string>
+    <string name="nice_job">Nice Job</string>
+    <string name="thanks">Thanks!</string>
 </resources>
