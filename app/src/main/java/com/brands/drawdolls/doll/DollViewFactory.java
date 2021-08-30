@@ -49,7 +49,7 @@ public class DollViewFactory {
 
     }
 
-    public void setDollViewMargins(
+    public LinearLayout.LayoutParams setDollViewMargins(
             LinearLayout.LayoutParams layoutParams,
             Side side
     ) {
@@ -61,6 +61,7 @@ public class DollViewFactory {
         else
             layoutParams.setMargins(0, 0, cardMargin, 0);
 
+        return layoutParams;
     }
 
     public RelativeLayout createCardLayout() {

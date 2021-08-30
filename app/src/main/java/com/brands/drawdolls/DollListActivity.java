@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class DollListActivity extends BaseActivity {
 
     public static int FACTOR/* = getResources().getDisplayMetrics().density*/;
+    private Side side = Side.LEFT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,22 +104,23 @@ public class DollListActivity extends BaseActivity {
 
         DollViewFactory dollViewFactory = new DollViewFactory(this);
         FlowLayout dollsLayout = findViewById(R.id.dollsLayout);
-        Side side = Side.LEFT;
 
         for (CardView dollView : list) {
-            dollViewFactory.setDollViewMargins(
+            LinearLayout.LayoutParams newParams = dollViewFactory.setDollViewMargins(
                     (LinearLayout.LayoutParams) dollView.getLayoutParams(),
                     side
             );
+            dollView.setLayoutParams(newParams);
+
             dollsLayout.addView(dollView);
-            side = switchSide(side);
+            side = switchSide();
         }
 
         list.clear();
 
     }
 
-    private Side switchSide(Side side) {
+    private Side switchSide() {
         if (side == Side.LEFT)
             return Side.RIGHT;
         else

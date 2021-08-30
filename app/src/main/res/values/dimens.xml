@@ -44,4 +44,6 @@
 
     <dimen name="step_button_text_size">20sp</dimen>
 
+    <dimen name="swipe_demo_margin_top">150dp</dimen>
+
 </resources>

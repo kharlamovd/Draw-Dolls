@@ -1,10 +1,15 @@
 package com.brands.drawdolls;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +24,13 @@ import androidx.appcompat.app.AlertDialog;
 import com.brands.drawdolls.doll.Doll;
 import com.brands.drawdolls.doll.DollStatus;
 import com.brands.drawdolls.doll.DollsFactory;
+import com.brands.drawdolls.gestures.OnSwipeTouchListener;
+
+import pl.droidsonroids.gif.GifImageView;
 
 public class DollActivity extends BackButtonActivity {
+
+    private static final long SWIPE_DEMO_TIME_OUT = 2000;
 
     private Doll doll;
 
@@ -44,6 +54,70 @@ public class DollActivity extends BackButtonActivity {
         setOnNextButtonClick(nextButton);
         Button doneButton = findViewById(R.id.doneButton);
         setOnDoneButtonClick(doneButton);
+
+        ImageView stepImageView = findViewById(R.id.stepImageView);
+        setOnStepImageSwipeListener(stepImageView);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("firstTimeLaunch", true);
+        editor.commit();
+
+        swipeDemo();
+
+    }
+
+    private void swipeDemo() {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean firstTimeLaunch = preferences.getBoolean("firstTimeLaunch", true);
+
+        GifImageView swipeDemo = findViewById(R.id.swipeDemo);
+
+        if (firstTimeLaunch) {
+
+            swipeDemo.setVisibility(View.VISIBLE);
+
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(() ->
+                    swipeDemo.setVisibility(View.GONE),
+                    SWIPE_DEMO_TIME_OUT
+            );
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("firstTimeLaunch", false);
+            editor.commit();
+
+        }
+
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setOnStepImageSwipeListener(ImageView stepImage) {
+
+        stepImage.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @SuppressLint("ClickableViewAccessibility")
+            public void onSwipeRight() {
+                int currentStep = doll.getCurrentStep();
+
+                if ((currentStep - 1) > 0) {
+                    doll.setCurrentStep(currentStep - 1);
+                    update();
+                }
+            }
+
+            @SuppressLint("ClickableViewAccessibility")
+            public void onSwipeLeft() {
+                int stepsNum = doll.getStepsNum();
+                int currentStep = doll.getCurrentStep();
+
+                if ((currentStep + 1) <= stepsNum) {
+                    doll.setCurrentStep(currentStep + 1);
+                    update();
+                }
+            }
+
+        });
 
     }
 
@@ -235,7 +309,9 @@ public class DollActivity extends BackButtonActivity {
                 .setPositiveButton(R.string.yes, (dialog, id) -> {
 
                     doll.setSaveProgress(true);
-                    doll.setStatus(DollStatus.IN_PROGRESS);
+
+                    setDollStatus();
+
                     DollsFactory.dollList.set(doll.getDollId(), doll);
                     DollsFactory.saveDolls(this);
                     this.finish();
@@ -261,10 +337,21 @@ public class DollActivity extends BackButtonActivity {
 
     }
 
+    private void setDollStatus() {
+        DollStatus status;
+        if (doll.getCurrentStep() < doll.getStepsNum())
+            status = DollStatus.IN_PROGRESS;
+        else
+            status = DollStatus.DONE;
+
+        doll.setStatus(status);
+    }
+
     @Override
     public void onBackPressed() {
 
         if (doll.isSaveProgress()) {
+            setDollStatus();
             DollsFactory.dollList.set(doll.getDollId(), doll);
             DollsFactory.saveDolls(this);
             this.finish();
@@ -273,6 +360,8 @@ public class DollActivity extends BackButtonActivity {
 
             if (currentStep > 1)
                 showOnCloseDialog();
+            else
+                this.finish();
         }
 
     }

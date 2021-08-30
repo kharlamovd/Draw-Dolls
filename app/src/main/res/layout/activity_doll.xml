@@ -1,76 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".DollActivity">
+    tools:context=".DollListActivity">
 
-    <include
-        layout="@layout/nav_cardview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/nav_button_margin_top" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".DollActivity">
 
-    <HorizontalScrollView
-        android:id="@+id/stepScroll"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/nav_button_margin_top"
-        android:layout_marginStart="@dimen/step_layout_margin"
-        android:layout_marginEnd="@dimen/step_layout_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_marginEnd="@dimen/step_layout_margin"
-            android:id="@+id/stepsLayout"
-            android:orientation="horizontal"
+        <include
+            layout="@layout/nav_cardview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/nav_button_margin_top" />
 
-            <!--<Button
-                android:layout_width="@dimen/step_circle_size"
-                android:layout_height="@dimen/step_circle_size"
-                android:background="@drawable/step_circle"
-                android:textStyle="bold"
-                android:textSize="@dimen/step_button_text_size"
-                android:text="1" />-->
+        <HorizontalScrollView
+            android:id="@+id/stepScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/step_layout_margin"
+            android:layout_marginTop="@dimen/nav_button_margin_top"
+            android:layout_marginEnd="@dimen/step_layout_margin">
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/stepsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/step_layout_margin"
+                android:orientation="horizontal">
 
-    </HorizontalScrollView>
+                <!--<Button
+                    android:layout_width="@dimen/step_circle_size"
+                    android:layout_height="@dimen/step_circle_size"
+                    android:background="@drawable/step_circle"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/step_button_text_size"
+                    android:text="1" />-->
 
-    <ImageView
-        android:id="@+id/stepImageView"
-        android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="500dp" />
+            </LinearLayout>
 
-    <View
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        </HorizontalScrollView>
 
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_gravity="center"
-        android:text="@string/next"
-        style="@style/button_next_style"
-        android:layout_width="@dimen/button_layout_width"
-        android:layout_height="@dimen/button_layout_height"
-        android:layout_marginBottom="@dimen/button_layout_margin_bottom"
-        android:visibility="visible"/>
+        <ImageView
+            android:id="@+id/stepImageView"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginTop="20dp" />
 
-    <Button
-        android:id="@+id/doneButton"
-        android:layout_gravity="center"
-        android:text="@string/done"
-        style="@style/button_done_style"
-        android:textStyle="bold"
-        android:layout_width="@dimen/button_layout_width"
-        android:layout_height="@dimen/button_layout_height"
-        android:layout_marginBottom="@dimen/button_layout_margin_bottom"
-        android:visibility="gone"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/nextButton"
+            style="@style/button_next_style"
+            android:layout_width="@dimen/button_layout_width"
+            android:layout_height="@dimen/button_layout_height"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/button_layout_margin_bottom"
+            android:text="@string/next"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/doneButton"
+            style="@style/button_done_style"
+            android:layout_width="@dimen/button_layout_width"
+            android:layout_height="@dimen/button_layout_height"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/button_layout_margin_bottom"
+            android:text="@string/done"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:visibility="gone"
+        android:id="@+id/swipeDemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/swipe_demo_margin_top"
+        android:src="@drawable/swipe_demo" />
+
+</RelativeLayout>
