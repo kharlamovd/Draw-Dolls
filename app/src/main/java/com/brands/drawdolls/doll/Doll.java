@@ -11,25 +11,25 @@ public class Doll implements Serializable {
     public static final String DOLL_NAME = "doll";
 
     private int dollId;
-    private int dollTitleStringId;
+    private String dollTitle;
     private int stepsNum;
     private int currentStep;
     private boolean saveProgress;
 
     private DollStatus status;
 
-    public Doll(int dollId, int dollTitleStringId, int stepsNum, DollStatus status) {
+    public Doll(int dollId, String dollTitle, int stepsNum, DollStatus status) {
         this.dollId = dollId;
-        this.dollTitleStringId = dollTitleStringId;
+        this.dollTitle = dollTitle;
         this.stepsNum = stepsNum;
         this.currentStep = 1;
 
         this.status = status;
     }
 
-    public Doll(int dollId, int dollTitleStringId, int stepsNum) {
+    public Doll(int dollId, String dollTitle, int stepsNum) {
         this.dollId = dollId;
-        this.dollTitleStringId = dollTitleStringId;
+        this.dollTitle = dollTitle;
         this.stepsNum = stepsNum;
         this.currentStep = 1;
 
@@ -68,12 +68,12 @@ public class Doll implements Serializable {
         this.dollId = dollId;
     }
 
-    public int getDollTitleStringId() {
-        return dollTitleStringId;
+    public String getDollTitle() {
+        return dollTitle;
     }
 
-    public void setDollTitleStringId(int dollTitleStringId) {
-        this.dollTitleStringId = dollTitleStringId;
+    public void setDollTitle(String dollTitle) {
+        this.dollTitle = dollTitle;
     }
 
     public Drawable getDollDrawable(int step, Context context) {

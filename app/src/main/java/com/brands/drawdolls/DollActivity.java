@@ -46,7 +46,7 @@ public class DollActivity extends BackButtonActivity {
         backButton.setOnClickListener(view -> onBackPressed());
 
         TextView header = findViewById(R.id.headerText);
-        header.setText(doll.getDollTitleStringId());
+        header.setText(doll.getDollTitle());
 
         populateStepLayout();
 
@@ -58,10 +58,13 @@ public class DollActivity extends BackButtonActivity {
         ImageView stepImageView = findViewById(R.id.stepImageView);
         setOnStepImageSwipeListener(stepImageView);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        updateStepsLayout();
+
+        //  debug purpose
+        /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("firstTimeLaunch", true);
-        editor.commit();
+        editor.commit();*/
 
         swipeDemo();
 
@@ -126,7 +129,6 @@ public class DollActivity extends BackButtonActivity {
         LinearLayout stepsLayout = findViewById(R.id.stepsLayout);
 
         int stepsNum = doll.getStepsNum();
-        int currentStep = doll.getCurrentStep();
 
         Button firstStep = createStepButton(1, getDrawable(R.drawable.step_circle), Color.WHITE);
         setStepButtonOnClick(firstStep);
@@ -136,9 +138,6 @@ public class DollActivity extends BackButtonActivity {
             Button newBtn = createStepButton(i, null, Color.BLACK);
             setStepButtonOnClick(newBtn);
             stepsLayout.addView(newBtn);
-
-            if (i == currentStep)
-                newBtn.callOnClick();
         }
 
         update();
@@ -153,7 +152,8 @@ public class DollActivity extends BackButtonActivity {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(size, size);
 
         int margin = (int) getResources().getDimension(R.dimen.step_layout_margin);
-        layoutParams.setMargins(0, 0, margin, 0);
+        if (num != doll.getStepsNum())
+            layoutParams.setMargins(0, 0, margin, 0);
 
         stepButton.setLayoutParams(layoutParams);
         stepButton.setText(Integer.toString(num));
@@ -188,7 +188,6 @@ public class DollActivity extends BackButtonActivity {
         LinearLayout stepsLayout = findViewById(R.id.stepsLayout);
 
         int currentStep = doll.getCurrentStep();
-        doll.setCurrentStep(currentStep);
         int childCount = stepsLayout.getChildCount();
 
         for (int i = 0; i < childCount; i++) {
@@ -239,8 +238,6 @@ public class DollActivity extends BackButtonActivity {
             nextButton.setVisibility(View.VISIBLE);
             doneButton.setVisibility(View.GONE);
         }
-
-
 
     }
 
@@ -321,6 +318,7 @@ public class DollActivity extends BackButtonActivity {
 
                     doll.setCurrentStep(1);
                     doll.setStatus(DollStatus.NONE);
+                    doll.setSaveProgress(false);
                     DollsFactory.dollList.set(doll.getDollId(), doll);
                     DollsFactory.saveDolls(this);
                     this.finish();
@@ -339,7 +337,12 @@ public class DollActivity extends BackButtonActivity {
 
     private void setDollStatus() {
         DollStatus status;
-        if (doll.getCurrentStep() < doll.getStepsNum())
+        int currentStep = doll.getCurrentStep();
+
+        if (currentStep == 1) {
+            status = DollStatus.NONE;
+            doll.setSaveProgress(false);
+        } else if (currentStep < doll.getStepsNum())
             status = DollStatus.IN_PROGRESS;
         else
             status = DollStatus.DONE;
@@ -360,8 +363,11 @@ public class DollActivity extends BackButtonActivity {
 
             if (currentStep > 1)
                 showOnCloseDialog();
-            else
+            else {
+                setDollStatus();
                 this.finish();
+            }
+
         }
 
     }
