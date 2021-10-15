@@ -15,6 +15,7 @@ public class Doll implements Serializable {
     private int stepsNum;
     private int currentStep;
     private boolean saveProgress;
+    private boolean reward;
 
     private DollStatus status;
 
@@ -27,11 +28,21 @@ public class Doll implements Serializable {
         this.status = status;
     }
 
-    public Doll(int dollId, String dollTitle, int stepsNum) {
+    /*public Doll(int dollId, String dollTitle, int stepsNum) {
         this.dollId = dollId;
         this.dollTitle = dollTitle;
         this.stepsNum = stepsNum;
         this.currentStep = 1;
+
+        status = DollStatus.NEW;
+    }*/
+
+    public Doll(int dollId, String dollTitle, int stepsNum, boolean reward) {
+        this.dollId = dollId;
+        this.dollTitle = dollTitle;
+        this.stepsNum = stepsNum;
+        this.currentStep = 1;
+        this.reward = reward;
 
         status = DollStatus.NEW;
     }
@@ -103,5 +114,13 @@ public class Doll implements Serializable {
 
     public void setSaveProgress(boolean saveProgress) {
         this.saveProgress = saveProgress;
+    }
+
+    public boolean isReward() {
+        return reward;
+    }
+
+    public void setReward(boolean reward) {
+        this.reward = reward;
     }
 }

@@ -2,10 +2,12 @@ package com.brands.drawdolls.doll;
 
 import static com.brands.drawdolls.doll.DollsFactory.dollList;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,10 +15,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 
 import com.brands.drawdolls.DollActivity;
 import com.brands.drawdolls.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 public class DollViewFactory {
 
@@ -104,6 +114,7 @@ public class DollViewFactory {
 
         });
 
+
     }
 
     public ImageView createStatusImageView(DollStatus status, int mainImageId) {
@@ -137,6 +148,26 @@ public class DollViewFactory {
         }
 
         return imageView;
+
+    }
+
+    public ImageView createRewardLabel(int mainImageId) {
+
+        ImageView rewardImageView = new ImageView(context);
+        RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+        rewardImageView.setImageResource(R.drawable.ad_label);
+
+        rlp.addRule(RelativeLayout.BELOW, mainImageId);
+        int marginTop = (int) context.getResources().getDimension(R.dimen.reward_margin_top);
+        int marginStart = (int) context.getResources().getDimension(R.dimen.status_margin_start);
+
+        rlp.setMargins(marginStart, marginTop, 0, 0);
+        rewardImageView.setLayoutParams(rlp);
+
+        return rewardImageView;
 
     }
 

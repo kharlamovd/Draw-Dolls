@@ -21,4 +21,6 @@
     <string name="no">No</string>
     <string name="nice_job">Nice Job</string>
     <string name="thanks">Thanks!</string>
+    <string name="ok">OK</string>
+    <string name="rewarded_msg">To open this category you should watch ad.</string>
 </resources>

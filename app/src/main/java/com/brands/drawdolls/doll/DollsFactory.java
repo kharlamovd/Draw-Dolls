@@ -47,14 +47,14 @@ public class DollsFactory {
 
     private static void createNewDollsList(Context context) {
 
-        dollList.add(new Doll(0, context.getString(R.string.lol_pink), 12));
-        dollList.add(new Doll(1, context.getString(R.string.lol_band), 10));
-        dollList.add(new Doll(2, context.getString(R.string.lol_boots), 9));
-        dollList.add(new Doll(3, context.getString(R.string.winx), 8));
-        dollList.add(new Doll(4, context.getString(R.string.simple_doll), 4));
-        dollList.add(new Doll(5, context.getString(R.string.girl_doll), 8));
-        dollList.add(new Doll(6, context.getString(R.string.old_dress_doll), 7));
-        dollList.add(new Doll(7, context.getString(R.string.ballerina), 7));
+        dollList.add(new Doll(0, context.getString(R.string.lol_pink), 12, true));
+        dollList.add(new Doll(1, context.getString(R.string.lol_band), 10, false));
+        dollList.add(new Doll(2, context.getString(R.string.lol_boots), 9, false));
+        dollList.add(new Doll(3, context.getString(R.string.winx), 8, true));
+        dollList.add(new Doll(4, context.getString(R.string.simple_doll), 4, false));
+        dollList.add(new Doll(5, context.getString(R.string.girl_doll), 8, false));
+        dollList.add(new Doll(6, context.getString(R.string.old_dress_doll), 7, false));
+        dollList.add(new Doll(7, context.getString(R.string.ballerina), 7, false));
 
     }
 

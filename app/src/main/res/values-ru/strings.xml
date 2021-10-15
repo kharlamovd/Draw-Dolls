@@ -21,4 +21,6 @@
     <string name="no">Нет</string>
     <string name="nice_job">Отличная работа!</string>
     <string name="thanks">Спасибо!</string>
+    <string name="ok">Хорошо</string>
+    <string name="rewarded_msg">Чтобы открыть эту категорию, нужно посмотреть рекламу</string>
 </resources>

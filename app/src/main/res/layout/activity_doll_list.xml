@@ -19,7 +19,7 @@
     <ScrollView
         android:layout_marginTop="@dimen/doll_list_margin_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="650dp">
 
         <com.nex3z.flowlayout.FlowLayout
             android:id="@+id/dollsLayout"
@@ -28,7 +28,7 @@
             app:flChildSpacingForLastRow="align"
             app:flChildSpacing="auto">
 
-            <!--<androidx.cardview.widget.CardView
+            <androidx.cardview.widget.CardView
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 android:layout_marginStart="@dimen/doll_list_item_margin"
                 android:layout_marginEnd="@dimen/doll_list_item_margin"
@@ -55,6 +55,14 @@
                         android:layout_marginStart="@dimen/status_margin_start"
                         android:layout_marginTop="@dimen/status_margin_top"
                         android:src="@drawable/state_new" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dollImg"
+                        android:layout_marginStart="@dimen/status_margin_start"
+                        android:layout_marginTop="@dimen/reward_margin_top"
+                        android:src="@drawable/ad_label" />
 
                 </RelativeLayout>
 
@@ -94,10 +102,21 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/doll1_12" />
 
-            </androidx.cardview.widget.CardView>-->
+            </androidx.cardview.widget.CardView>
 
         </com.nex3z.flowlayout.FlowLayout>
 
     </ScrollView>
+
+    <View
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <com.google.android.ads.nativetemplates.TemplateView
+        android:id="@+id/my_template"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:gnt_template_type="@layout/gnt_small_template_view" />
 
 </LinearLayout>

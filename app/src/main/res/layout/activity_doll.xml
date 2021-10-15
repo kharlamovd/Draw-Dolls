@@ -63,7 +63,6 @@
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="@dimen/button_layout_height"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/button_layout_margin_bottom"
             android:text="@string/next"
             android:visibility="visible" />
 
@@ -73,10 +72,24 @@
             android:layout_width="@dimen/button_layout_width"
             android:layout_height="@dimen/button_layout_height"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/button_layout_margin_bottom"
             android:text="@string/done"
             android:textStyle="bold"
             android:visibility="gone" />
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="LARGE_BANNER"
+            android:layout_gravity="center"
+            ads:adUnitId="ca-app-pub-7041598119886359/7607656659">
+        </com.google.android.gms.ads.AdView>
 
     </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.brands.drawdolls;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -19,25 +21,44 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import com.brands.drawdolls.doll.Doll;
 import com.brands.drawdolls.doll.DollStatus;
 import com.brands.drawdolls.doll.DollsFactory;
 import com.brands.drawdolls.gestures.OnSwipeTouchListener;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+
+import java.util.Arrays;
 
 import pl.droidsonroids.gif.GifImageView;
 
 public class DollActivity extends BackButtonActivity {
 
     private static final long SWIPE_DEMO_TIME_OUT = 2000;
+    private static final int STEPS_FOR_INTERSTITIAL = 4;
 
     private Doll doll;
+
+    private RewardedAd mRewardedAd;
+
+    private int interstitialStepsCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doll);
+
+        loadRewardedAd();
 
         Intent intent = getIntent();
         this.doll = (Doll) intent.getSerializableExtra("doll");
@@ -66,8 +87,99 @@ public class DollActivity extends BackButtonActivity {
         editor.putBoolean("firstTimeLaunch", true);
         editor.commit();*/
 
-        swipeDemo();
+        if (doll.isReward())
+            showRewardedDialog(doll);
+        else
+            swipeDemo();
 
+        showBanner();
+        DollsFactory.saveDolls(this);
+    }
+
+    private void showRewardedDialog(Doll doll) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(R.string.rewarded_msg)
+                .setPositiveButton(R.string.ok, (dialog, id) -> {
+
+                    DollsFactory.saveDolls(this);
+                    //new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("60D1E2B4C3056ED6C64AF12841F0E182"));
+
+                    showRewardedAd(doll);
+
+                    dialog.dismiss();
+
+                })
+                .setNegativeButton(R.string.no, (dialog, id) -> {
+
+                    dialog.cancel();
+                    this.onBackPressed();
+
+                });
+
+        Dialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    protected void loadRewardedAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        RewardedAd.load(this, "ca-app-pub-7041598119886359/7416084964",
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+                        Log.d("RewardedAd", loadAdError.getMessage());
+                        mRewardedAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        mRewardedAd = rewardedAd;
+                        Log.d("RewardedAd", "Ad was loaded.");
+                    }
+                });
+
+        if (mRewardedAd != null)
+            mRewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    // Called when ad is shown.
+                    Log.d("RewardedAd", "Ad was shown.");
+                }
+
+                @Override
+                public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    // Called when ad fails to show.
+                    Log.d("RewardedAd", "Ad failed to show.");
+                }
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    // Called when ad is dismissed.
+                    // Set the ad reference to null so you don't show the ad a second time.
+                    Log.d("RewardedAd", "Ad was dismissed.");
+                    mRewardedAd = null;
+
+                    onBackPressed();
+                }
+            });
+    }
+
+    protected void showRewardedAd(Doll doll) {
+        if (mRewardedAd != null) {
+            mRewardedAd.show(this, (OnUserEarnedRewardListener) rewardItem -> {
+                // Handle the reward.
+                Log.d("RewardedAd", "The user earned the reward.");
+            });
+        } else {
+            Log.d("RewardedAd", "The rewarded ad wasn't ready yet.");
+        }
+
+        doll.setReward(false);
+        DollsFactory.dollList.set(doll.getDollId(), doll);
+        DollsFactory.saveDolls(this);
     }
 
     private void swipeDemo() {
@@ -258,6 +370,14 @@ public class DollActivity extends BackButtonActivity {
         updateStepImage();
         updateButton();
 
+        if (interstitialStepsCount % STEPS_FOR_INTERSTITIAL == 0) {
+            loadInterstitial();
+            showInterstitial();
+
+            interstitialStepsCount = 0;
+        }
+        interstitialStepsCount++;
+
     }
 
     private void scrollToStepButton(Button button) {
@@ -369,6 +489,8 @@ public class DollActivity extends BackButtonActivity {
             }
 
         }
+
+        showInterstitial();
 
     }
 }
